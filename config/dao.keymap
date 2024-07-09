@@ -47,15 +47,37 @@
             #binding-cells = <0>;
             bindings = <&kp TILDE>, <&kp LC(TILDE)>;
         };
+
+        Esc_CmdAltEsc: Esc_CmdAltEsc {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ESC_CMDALTESC";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&EscMacro>;
+        };
     };
 
     macros {
         EscMacro: EscMacro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&none>, <&macro_press>;
+            bindings =
+                <&macro_press>,
+                <&kp LGUI &kp LALT>,
+                <&macro_tap>,
+                <&kp ESC>,
+                <&macro_release>,
+                <&kp LGUI &kp LALT>;
 
             label = "ESCMACRO";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        EscCombo {
+            bindings = <&kp ESC>;
+            key-positions = <19 20>;
         };
     };
 
@@ -73,19 +95,19 @@
 
         lower_layer {
             bindings = <
-&kp ESC  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT  &kp CARET       &kp AMPERSAND  &kp ASTERISK    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BSPC
-&trans   &kp F5           &kp F6       &kp F7    &kp F9      &kp F10      &kp MINUS       &kp PLUS       &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp PIPE               &kp TILDE
-&trans   &kp ENTER        &none        &none     &none       &kp F12      &kp UNDERSCORE  &kp EQUAL      &kp LBKT        &kp RBKT              &kp BSLH               &Tild_CTRLTild
-                                       &trans    &trans      &trans       &trans          &trans         &trans
+&Esc_CmdAltEsc  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT  &kp CARET       &kp AMPERSAND  &kp ASTERISK    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BSPC
+&trans          &kp F5           &kp F6       &kp F7    &kp F9      &kp F10      &kp MINUS       &kp PLUS       &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp PIPE               &kp TILDE
+&trans          &kp ENTER        &none        &none     &none       &kp F12      &kp UNDERSCORE  &kp EQUAL      &kp LBKT        &kp RBKT              &kp BSLH               &Tild_CTRLTild
+                                              &trans    &trans      &trans       &trans          &trans         &trans
             >;
         };
 
         raise_layer {
             bindings = <
-&kp ESC  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6    &kp N7     &kp N8     &kp N9     &kp N0      &kp BSPC
-&trans   &none   &none   &none   &none   &none   &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none       &kp DEL
-&trans   &none   &none   &none   &none   &none   &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &kp PERIOD  &trans
-                         &trans  &trans  &trans  &trans    &trans     &trans
+&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6    &kp N7     &kp N8     &kp N9     &kp N0      &kp BSPC
+&trans  &none   &none   &none   &none   &none   &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none       &kp DEL
+&trans  &none   &none   &none   &none   &none   &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &kp PERIOD  &trans
+                        &trans  &trans  &trans  &trans    &trans     &trans
             >;
         };
 
