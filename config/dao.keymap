@@ -74,13 +74,13 @@
     combos {
         compatible = "zmk,combos";
 
-        EscComboLeft {
+        EscComboRight {
             bindings = <&kp ESC>;
             key-positions = <19 20>;
         };
 
-        EscComboRight {
-            bindings = <&kp LG(ESC)>;
+        EscComboLeft {
+            bindings = <&kp ESC>;
             key-positions = <15 16>;
         };
     };
